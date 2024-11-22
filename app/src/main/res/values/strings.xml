@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">TimeFast</string>
+    <!--Inicio de Sesion-->
+    <string name="login_titulo">Time-Fast</string>
+    <string name="login_card_titulo">Inicio de Sesion</string>
+    <string name="login_card_subtitulo">Ingrese su número de personal y contraseña para acceder al sistema</string>
+    <string name="login_numero_personal_label">Número de Personal:</string>
+    <string name="login_numero_personal_hint">N0. de Personal</string>
+    <string name="login_contrasena_label">Contraseña:</string>
+    <string name="login_contrasena_hint">*********</string>
+    <string name="login_recuerdame_check">Recordarme</string>
+    <string name="login_olvide_contrasena_text">Olvide mi contraseña</string>
+    <string name="login_iniciar_sesion_button">Iniciar Sesion</string>
+    <string name="login_sin_cuenta_text">¿No tienes cuenta?</string>
+    <string name="login_registrarse_text">Registrarse</string>
+    <!--Mis Envios-->
+   <string name="mis_envios_titulo">Mis Envios</string>
+   <string name="mis_envios_titulo_pantalla">Time-Fast</string>
+   <string name="mis_envios_num_guia">Número de guía</string>
+   <string name="mis_evios_card_destino">Destino</string>
+   <string name="mis_envios_card_estatus">Estatus</string>
+    <!--Envio-->
+   <string name="envio_titulo">Envío</string>
+   <string name="envio_titulo_pantalla">Time-Fast</string>
+   <string name="envio_origen_text">Origen</string>
+   <string name="envio_destino_text">Destino</string>
+   <string name="envio_paquetes_contenidos_text">Paquetes Contenidos</string>
+   <string name="envio_contacto_cliente_text">Contacto del Cliente</string>
+   <string name="envio_comentarios_text">Comentario</string>
+   <string name="envio_boton_cancelar">Cancelar</string>
+   <string name="envio_boton_guardar">Guardar</string>
+</resources>
