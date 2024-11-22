@@ -14,19 +14,31 @@
     <string name="login_sin_cuenta_text">¿No tienes cuenta?</string>
     <string name="login_registrarse_text">Registrarse</string>
     <!--Mis Envios-->
-   <string name="mis_envios_titulo">Mis Envios</string>
-   <string name="mis_envios_titulo_pantalla">Time-Fast</string>
-   <string name="mis_envios_num_guia">Número de guía</string>
-   <string name="mis_evios_card_destino">Destino</string>
-   <string name="mis_envios_card_estatus">Estatus</string>
+    <string name="mis_envios_titulo">Mis Envios</string>
+    <string name="mis_envios_titulo_pantalla">Time-Fast</string>
+    <string name="mis_envios_num_guia">Número de guía</string>
+    <string name="mis_evios_card_destino">Destino</string>
+    <string name="mis_envios_card_estatus">Estatus</string>
     <!--Envio-->
-   <string name="envio_titulo">Envío</string>
-   <string name="envio_titulo_pantalla">Time-Fast</string>
-   <string name="envio_origen_text">Origen</string>
-   <string name="envio_destino_text">Destino</string>
-   <string name="envio_paquetes_contenidos_text">Paquetes Contenidos</string>
-   <string name="envio_contacto_cliente_text">Contacto del Cliente</string>
-   <string name="envio_comentarios_text">Comentario</string>
-   <string name="envio_boton_cancelar">Cancelar</string>
-   <string name="envio_boton_guardar">Guardar</string>
+    <string name="envio_titulo">Envío</string>
+    <string name="envio_titulo_pantalla">Time-Fast</string>
+    <string name="envio_origen_text">Origen</string>
+    <string name="envio_destino_text">Destino</string>
+    <string name="envio_paquetes_contenidos_text">Paquetes Contenidos</string>
+    <string name="envio_contacto_cliente_text">Contacto del Cliente</string>
+    <string name="envio_comentarios_text">Comentario</string>
+    <string name="envio_boton_cancelar">Cancelar</string>
+    <string name="envio_boton_guardar">Guardar</string>
+
+    <!--Mi Perfil-->
+    <string name="mi_perfil_titulo_pantalla">Time-Fast</string>
+    <string name="mi_perfil_titulo">Mi Perfil</string>
+    <string name="mi_perfil_nombre_text">Nombre</string>
+    <string name="mi_perfil_apellido_paterno_text">Apellido Paterno</string>
+    <string name="mi_perfil_apellido_materno_text">Apellido Materno</string>
+    <string name="mi_perfil_correo_text">Correo</string>
+    <string name="mi_perfil_contrasena_text">Contraseña</string>
+    <string name="mi_perfil_no_licencia_text">N0. Licencia</string>
+    <string name="mi_perfil_cancelar_button">Cancelar</string>
+    <string name="mi_perfil_actualizar_button">Actualizar</string>
 </resources>

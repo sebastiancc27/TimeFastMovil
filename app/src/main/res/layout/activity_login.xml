@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    android:background="@color/background_color"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_titulo"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:padding="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/shape_login_container_white"
+        android:layout_marginTop="200dp"
+        android:padding="30dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_card_titulo"
+            android:textSize="30sp"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/background_color"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/login_card_subtitulo"
+            android:textAlignment="center"
+            android:textColor="@color/primary_color"
+            android:textSize="15sp" />
+        <TextView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:text="@string/login_numero_personal_label"
+            android:textColor="@color/primary_color"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            />
+        <EditText
+            android:id="@+id/et_no_personal"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_numero_personal_hint"
+            android:background="@drawable/shape_edit_text"
+            android:padding="4dp"
+            android:textColorHint="@color/primary_color"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            />
+
+        <TextView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:text="@string/login_contrasena_label"
+            android:textColor="@color/primary_color"
+            android:textStyle="bold"
+            android:textSize="20sp"
+
+            android:layout_marginTop="20dp"
+            />
+        <EditText
+            android:id="@+id/et_contrasena"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/login_contrasena_hint"
+            android:background="@drawable/shape_edit_text"
+            android:padding="4dp"
+            android:textColorHint="@color/primary_color"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            />
+            <Button
+                android:id="@+id/btn_iniciar_sesion"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_login_button"
+                android:text="@string/login_iniciar_sesion_button"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                />
+
+    </LinearLayout>
+
+
+</LinearLayout>
