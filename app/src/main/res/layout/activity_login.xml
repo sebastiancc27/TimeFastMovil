@@ -15,17 +15,23 @@
         android:layout_height="wrap_content"
         android:text="@string/login_titulo"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:textAlignment="center"
         android:padding="10dp"
+        android:textStyle="bold"
         />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/logotimefast"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@drawable/shape_login_container_white"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="10dp"
         android:padding="30dp"
         >
         <TextView
