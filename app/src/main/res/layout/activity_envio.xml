@@ -106,6 +106,7 @@
             android:layout_marginStart="10dp"
             />
             <TextView
+                android:id="@+id/tv_origen"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Portugal, Lisboa"
@@ -125,6 +126,7 @@
                 android:layout_marginTop="2dp"
                 />
             <TextView
+                android:id="@+id/tv_destino"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Xalapa, Veracruz"
@@ -143,6 +145,7 @@
                 android:layout_marginTop="2dp"
                 />
             <TextView
+                android:id="@+id/tv_paquetes"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="4 paquetes"
@@ -161,6 +164,7 @@
                 android:layout_marginTop="2dp"
                 />
             <TextView
+                android:id="@+id/tv_nombre_cliente"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Sebastián Córdoba"
@@ -169,6 +173,7 @@
                 android:layout_marginStart="10dp"
                 />
             <TextView
+                android:id="@+id/tv_num_cliente"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="2283010287"
@@ -177,6 +182,7 @@
                 android:layout_marginStart="10dp"
                 />
             <TextView
+                android:id="@+id/tv_correo_cliente"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="correo@gmail.com"
@@ -199,7 +205,6 @@
                 android:id="@+id/my_text_area"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:background=""
                 android:hint="Escribe tu texto aquí"
                 android:gravity="top|start"
                 android:inputType="textMultiLine"

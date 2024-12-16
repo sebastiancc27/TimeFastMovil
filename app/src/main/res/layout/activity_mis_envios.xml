@@ -94,7 +94,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_envios"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:padding="10dp"
         tools:listitem="@layout/item_recycle_envios"
         />
