@@ -22,6 +22,7 @@ class EnvioActivity : AppCompatActivity() {
     private lateinit var colaborador : Colaborador
     private lateinit var envio: Envio
     private lateinit var cliente: Cliente
+    val listaEstatus = arrayOf("Pendiente","En Tránsito","Entregado","Detenido","Cancelado")
 
     val gson = Gson()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,6 @@ class EnvioActivity : AppCompatActivity() {
         setContentView(view)
 
         val spinner: Spinner = findViewById(R.id.combo_estatus)
-        val listaEstatus = arrayOf("Pendiente","En Tránsito","Entregado","Detenido","Cancelado")
         val adapter = ArrayAdapter<String>(this@EnvioActivity, android.R.layout.simple_spinner_item,listaEstatus)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
@@ -148,13 +148,19 @@ class EnvioActivity : AppCompatActivity() {
         binding.tvPaquetes.text = envio.cantidadPaquetes.toString()
         binding.tvDestino.text = envio.destino
         binding.tvOrigen.text = "${envio.ciudad}, ${envio.estado}"
+
+        val estatusEnvio = envio.estatus.toString()
+        val index = listaEstatus.indexOf(estatusEnvio)
+        println("INDICE DE ESTATUS: "+ index)
+        if (index >= 0){
+            binding.comboEstatus.setSelection(index)
+        }
     }
 
     fun cargarDatosCliente(cliente : Cliente){
          binding.tvNombreCliente.text = cliente.nombre
          binding.tvCorreoCliente.text = cliente.correo
-        binding.tvNumCliente.text = cliente.telefono
-
+         binding.tvNumCliente.text = cliente.telefono
     }
 
     fun irPantallaPerfil(colaborador: Colaborador){
