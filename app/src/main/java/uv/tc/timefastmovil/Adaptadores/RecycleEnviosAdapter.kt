@@ -16,6 +16,7 @@ class RecycleEnviosAdapter(var lista : ArrayList<Envio>, var listener : Listener
         var destino : TextView = itemView.findViewById(R.id.card_et_destino)
         var estatus : TextView = itemView.findViewById(R.id.card_et_estatus)
         var itemRecycle :CardView = itemView.findViewById(R.id.item_recycle_envios)
+        var noGuia : TextView = itemView.findViewById(R.id.tv_no_guia)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -31,6 +32,7 @@ class RecycleEnviosAdapter(var lista : ArrayList<Envio>, var listener : Listener
         val envio = lista[position]
         holder.destino.text=envio.destino
         holder.estatus.text= envio.estatus
+        holder.noGuia.text = envio.noGuia.toString()
         holder.itemRecycle.setOnClickListener{
             listener.clickEnvio(position)
         }

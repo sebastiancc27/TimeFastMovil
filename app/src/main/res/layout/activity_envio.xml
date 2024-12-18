@@ -12,15 +12,16 @@
     <LinearLayout
         android:id="@+id/linear_header"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="horizontal"
         android:background="@color/background_color"
         android:gravity="center_horizontal"
         >
 
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="60dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             app:srcCompat="@drawable/logotimefast"
             />
 
@@ -35,9 +36,10 @@
             />
 
         <ImageView
-            android:id="@+id/iconono_perfil_usuario"
+            android:id="@+id/icono_perfil_usuario"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
             app:srcCompat="@drawable/account"
             />
     </LinearLayout>
@@ -65,9 +67,10 @@
             />
 
     </LinearLayout>
+
     <androidx.cardview.widget.CardView
         android:layout_width="350dp"
-        android:layout_height="500dp"
+        android:layout_height="600dp"
         android:layout_marginStart="30dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="10dp"
@@ -75,19 +78,30 @@
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
             android:gravity="center_horizontal"
             android:background="@drawable/shape_card_recycle_header"
             android:padding="15dp"
             >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="No Guia 123456"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            />
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:text="No Guia:"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:id="@+id/tv_no_guia"
+                android:text="@string/envio_no_guia"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"/>
+
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="60dp"
@@ -106,13 +120,14 @@
             android:layout_marginStart="10dp"
             />
             <TextView
-                android:id="@+id/tv_origen"
+                android:id="@+id/tvOrigen"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Portugal, Lisboa"
                 android:textColor="@color/text_color"
                 android:layout_marginTop="1dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
                 />
 
             <TextView
@@ -126,13 +141,14 @@
                 android:layout_marginTop="2dp"
                 />
             <TextView
-                android:id="@+id/tv_destino"
+                android:id="@+id/tvDestino"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Xalapa, Veracruz"
                 android:textColor="@color/text_color"
                 android:layout_marginTop="1dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -145,13 +161,14 @@
                 android:layout_marginTop="2dp"
                 />
             <TextView
-                android:id="@+id/tv_paquetes"
+                android:id="@+id/tvPaquetes"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="4 paquetes"
                 android:textColor="@color/text_color"
                 android:layout_marginTop="1dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -162,34 +179,87 @@
                 android:textSize="17sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="2dp"
+
                 />
-            <TextView
-                android:id="@+id/tv_nombre_cliente"
-                android:layout_width="200dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sebastián Córdoba"
-                android:textColor="@color/text_color"
-                android:layout_marginTop="1dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginStart="10dp"
-                />
-            <TextView
-                android:id="@+id/tv_num_cliente"
-                android:layout_width="200dp"
+                android:layout_marginEnd="10dp">
+                <TextView
+                    android:text="@string/envio_nombre_text"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/tvNombreCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fulanito Córdoba Vega"
+                    android:textColor="@color/text_color"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2283010287"
-                android:textColor="@color/text_color"
-                android:layout_marginTop="1dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginStart="10dp"
-                />
-            <TextView
-                android:id="@+id/tv_correo_cliente"
-                android:layout_width="200dp"
+                android:layout_marginEnd="10dp">
+                <TextView
+                    android:text="@string/envio_telefono_text"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/tvNumCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2283010287"
+                    android:textColor="@color/text_color"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="correo@gmail.com"
-                android:textColor="@color/text_color"
-                android:layout_marginTop="1dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginStart="10dp"
-                />
+                android:layout_marginEnd="10dp">
+                <TextView
+                    android:text="@string/envio_correo_text"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/tvCorreoCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="correo@gmail.com"
+                    android:textColor="@color/text_color"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -205,13 +275,17 @@
                 android:id="@+id/my_text_area"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:hint="Escribe tu texto aquí"
                 android:gravity="top|start"
                 android:inputType="textMultiLine"
                 android:lines="5"
                 android:maxLines="10"
                 android:scrollbars="vertical"
+                android:layout_marginBottom="10dp"
                 android:padding="10dp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -227,6 +301,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
                 />
 
 
@@ -239,13 +314,14 @@
        android:orientation="horizontal"
        android:weightSum="2"
        android:layout_marginStart="30dp"
-       android:layout_marginTop="20dp"
+       android:layout_marginTop="50dp"
        >
        <Button
            android:id="@+id/btn_cancelar_cambio_envio"
            android:layout_width="150dp"
            android:layout_height="wrap_content"
            android:text="@string/envio_boton_cancelar"
+
            android:background="@drawable/shape_secondary_button"
            android:textColor="@color/secondary_color"
            android:layout_marginEnd="50dp"

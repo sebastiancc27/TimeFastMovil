@@ -2,20 +2,21 @@ package uv.tc.timefastmovil
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Telephony.Mms.Intents
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.gson.Gson
-import com.koushikdutta.async.Util
 import com.koushikdutta.ion.Ion
-import uv.tc.timefastmovil.Poko.LoginColaborador
-import uv.tc.timefastmovil.Util.Constantes
 import uv.tc.timefastmovil.databinding.ActivityLoginBinding
+import uv.tc.timefastmovil.poko.LoginColaborador
+import uv.tc.timefastmovil.util.Constantes
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -25,57 +26,62 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+
         binding.btnIniciarSesion.setOnClickListener{
-            val noPersonal = binding.etNoPersonal.text.toString();
-            val contrasena = binding.etContrasena.text.toString();
-            if(camposValidos(noPersonal, contrasena)){
-                verificarCredenciales(noPersonal,contrasena)
+            val noPersonal = binding.etNoPersonal.text.toString()
+            val contrasena = binding.etContrasena.text.toString()
+            if (camposValidos(noPersonal,contrasena)){
+                verificacionCredenciales(noPersonal,contrasena)
             }
         }
     }
 
-    fun camposValidos (correo : String, password : String): Boolean{
-        var camposValidos = true
-        if(correo.isEmpty()){
-            camposValidos=false
-            binding.etNoPersonal.setError("No Personal obligatorio")
+    fun camposValidos(noPersonal : String, contrasena : String) : Boolean{
+        var validos = true
+        if(noPersonal.isEmpty()){
+            validos = false
+            binding.etNoPersonal.setError("Número de personal obligatorio")
         }
-        if(password.isEmpty()){
-            camposValidos=false
+        if(contrasena.isEmpty()){
+            validos = false
             binding.etContrasena.setError("Contraseña obligatoria")
         }
-        return camposValidos
+        return validos
     }
-    fun verificarCredenciales( noPersonal : String, password: String){
+
+    fun verificacionCredenciales(noPersonal: String, contrasena: String){
+        //Configuración de la librería Ion. Solo se debe hacer la primera vez
         Ion.getDefault(this@LoginActivity).conscryptMiddleware.enable(false)
-        Ion.with(this@LoginActivity).load("POST","${Constantes().urlServicio}login/login-colaborador")
+        Ion.with(this@LoginActivity)
+            .load("POST","${Constantes().urlServicio}login/login-colaborador")
             .setHeader("Content-Type","application/x-www-form-urlencoded")
             .setBodyParameter("noPersonal", noPersonal)
-            .setBodyParameter("contrasena",password)
-            .asString().setCallback { e, result ->
-                if(e==null){
+            .setBodyParameter("contrasena", contrasena)
+            .asString()
+            .setCallback { e, result ->
+                if (e == null){
                     serializarInformacion(result)
                 }else{
-                    Toast.makeText(this@LoginActivity,"Ha ocurrido un error: "+e.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@LoginActivity,"Error: "+e.message, Toast.LENGTH_LONG).show()
+                    println("Error: "+e.message)
                 }
-            }//EL RESULT ES LA CADENA STRING DEL JSON
+            }
     }
+
     fun serializarInformacion(json:String){
         val gson = Gson()
         val respuestaLoginColaborador = gson.fromJson(json, LoginColaborador::class.java)
         Toast.makeText(this@LoginActivity, respuestaLoginColaborador.mensaje, Toast.LENGTH_LONG).show()
-        if(respuestaLoginColaborador.error==false){
-            var clienteJson = gson.toJson(respuestaLoginColaborador.colaborador)
-            irPantallaPrincipal(clienteJson)
+        if (!respuestaLoginColaborador.error){
+            val colaboradorJSON = gson.toJson(respuestaLoginColaborador.colaborador)
+            println("Respuesta Login : ${colaboradorJSON}")
+            irPantallaMisEnvios(colaboradorJSON)
         }
     }
-
-    fun irPantallaPrincipal(colaborador : String){
+    fun irPantallaMisEnvios(colaborador : String){
         val intent = Intent(this@LoginActivity, MisEnviosActivity::class.java)
         intent.putExtra("colaborador", colaborador)
         startActivity(intent)
         finish()
     }
-
-
 }

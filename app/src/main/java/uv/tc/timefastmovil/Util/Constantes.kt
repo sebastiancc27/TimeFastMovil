@@ -1,5 +1,5 @@
-package uv.tc.timefastmovil.Util
-/*192.168.0.115*/
+package uv.tc.timefastmovil.util
+
 class Constantes {
-    val urlServicio="http://192.168.100.18:8084/TimeFastWS/timefast/"
+    val urlServicio = "http://192.168.1.71:8084/TimeFastWS/timefast/"
 }

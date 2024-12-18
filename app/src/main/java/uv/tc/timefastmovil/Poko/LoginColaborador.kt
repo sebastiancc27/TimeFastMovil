@@ -1,7 +1,7 @@
-package uv.tc.timefastmovil.Poko
+package uv.tc.timefastmovil.poko
 
 data class LoginColaborador(
-    var error : Boolean?,
-    var mensaje : String ?,
-    var colaborador: Colaborador?
+    val error: Boolean,
+    val mensaje: String,
+    val colaborador: Colaborador ?
 )

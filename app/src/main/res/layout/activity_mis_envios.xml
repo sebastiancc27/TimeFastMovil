@@ -19,6 +19,7 @@
     >
 
     <ImageView
+        android:id="@+id/logo"
         android:layout_width="60dp"
         android:layout_height="50dp"
         app:srcCompat="@drawable/logotimefast"
@@ -35,9 +36,10 @@
        />
 
     <ImageView
-        android:id="@+id/iconono_perfil_usuario"
+        android:id="@+id/icono_perfil_usuario"
         android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
         app:srcCompat="@drawable/account"
         />
 </LinearLayout>
@@ -77,9 +79,9 @@
         android:padding="8dp"
     >
     <EditText
-        android:layout_width="270dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/mis_envios_num_guia"
+        android:hint="@string/mis_envios_num_guia"
         android:background="@android:color/transparent"
         android:textColor="@color/text_color"
         />

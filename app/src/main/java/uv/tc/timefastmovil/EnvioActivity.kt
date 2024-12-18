@@ -1,27 +1,27 @@
 package uv.tc.timefastmovil
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.gson.Gson
 import com.koushikdutta.ion.Ion
-import uv.tc.timefastmovil.Poko.Cliente
-import uv.tc.timefastmovil.Poko.Colaborador
-import uv.tc.timefastmovil.Poko.Envio
-import uv.tc.timefastmovil.Util.Constantes
 import uv.tc.timefastmovil.databinding.ActivityEnvioBinding
 import com.google.gson.reflect.TypeToken
+import uv.tc.timefastmovil.Poko.Cliente
+import uv.tc.timefastmovil.Poko.Envio
+import uv.tc.timefastmovil.poko.Colaborador
+import uv.tc.timefastmovil.util.Constantes
 
 class EnvioActivity : AppCompatActivity() {
     private lateinit var binding:ActivityEnvioBinding
     private lateinit var noGuia : String
     private lateinit var colaboradorJson : String
     private lateinit var colaborador : Colaborador
-    private  lateinit var envio : Envio
-    private lateinit var cliente : Cliente
+    private lateinit var envio: Envio
+    private lateinit var cliente: Cliente
 
     val gson = Gson()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +29,12 @@ class EnvioActivity : AppCompatActivity() {
         binding=ActivityEnvioBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        val spinner: Spinner = findViewById(R.id.combo_estatus)
+        val listaEstatus = arrayOf("Pendiente","En Tránsito","Entregado","Detenido","Cancelado")
+        val adapter = ArrayAdapter<String>(this@EnvioActivity, android.R.layout.simple_spinner_item,listaEstatus)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
 
         colaboradorJson=intent.getStringExtra("colaborador")!!
         noGuia=intent.getStringExtra("noGuia")!!
@@ -39,8 +45,56 @@ class EnvioActivity : AppCompatActivity() {
         colaborador=gson.fromJson(colaboradorJson, Colaborador::class.java)
 
         obtenerEnvio(noGuia.toInt())
+        obtenerDatosColaborador(colaboradorJson)
+
+        binding.iconoPerfilUsuario.setOnClickListener{
+            val gson = Gson()
+            val colaboradorJSON = gson.toJson(colaborador)
+            println("CONDUCTOR ENVIOSACTIVITY ${colaboradorJSON}")
+            irPantallaPerfil(colaborador)
+        }
+
+        binding.logo.setOnClickListener{
+            finish()
+        }
+
+        binding.btnGuardarCambiosEnvio.setOnClickListener{
+            val valorSpinner = spinner.selectedItem.toString()
+            println("VALOR SPINNER: "+valorSpinner)
+            if ((valorSpinner.equals("Detenido") && binding.myTextArea.text.isEmpty()) ||
+                (valorSpinner.equals("Cancelado") && binding.myTextArea.text.isEmpty())){
+                binding.myTextArea.setError("Comentario Obligatorio")
+            }else{
+                envio.estatus = valorSpinner
+                actualizarEnvio(envio)
+            }
+        }
 
     }
+
+    fun actualizarEnvio(envio: Envio){
+        Ion.with(this@EnvioActivity)
+            .load("PUT","${Constantes().urlServicio}envio/editar-envio")
+            .setHeader("Content-Type", "application/json")
+            .setJsonPojoBody(envio)
+            .asString()
+            .setCallback { e, result ->
+                if (e == null){
+                    println("ENVIO ACTUALIZADO CORRECTAMENTE"+ result)
+                }else{
+                    println("ERROR AL ACTUALIZAR EL ENVIO: "+ e.message)
+                }
+            }
+    }
+
+    fun obtenerDatosColaborador(jsonColaborador : String){
+        if (jsonColaborador != null){
+            val gson = Gson()
+            colaborador = gson.fromJson(jsonColaborador, Colaborador::class.java)
+            println("ApellidoMaterno: "+ colaborador.apellidoMaterno.toString())
+        }
+    }
+
     fun obtenerEnvio(noGuia : Int){
         Ion.with(this)
             .load("GET", "${Constantes().urlServicio}envio/envio-NoGuia/${noGuia}")
@@ -88,17 +142,27 @@ class EnvioActivity : AppCompatActivity() {
                 }
             }
     }
-fun cargarDatosEnvio(envio: Envio){
 
-    binding.tvPaquetes.text = envio.cantidadPaquetes.toString()
-    binding.tvDestino.text = envio.destino
-    binding.tvOrigen.text = "${envio.ciudad}, ${envio.estado}"
-}
+    fun cargarDatosEnvio(envio: Envio){
+        binding.tvNoGuia.text = envio.noGuia.toString()
+        binding.tvPaquetes.text = envio.cantidadPaquetes.toString()
+        binding.tvDestino.text = envio.destino
+        binding.tvOrigen.text = "${envio.ciudad}, ${envio.estado}"
+    }
+
     fun cargarDatosCliente(cliente : Cliente){
-     binding.tvNombreCliente.text = cliente.nombre
-     binding.tvCorreoCliente.text = cliente.correo
-    binding.tvNumCliente.text = cliente.telefono
+         binding.tvNombreCliente.text = cliente.nombre
+         binding.tvCorreoCliente.text = cliente.correo
+        binding.tvNumCliente.text = cliente.telefono
 
+    }
+
+    fun irPantallaPerfil(colaborador: Colaborador){
+        val intent = Intent(this@EnvioActivity,PerfilActivity::class.java)
+        val gson = Gson()
+        val colaboradorGson = gson.toJson(colaborador)
+        intent.putExtra("colaborador",colaboradorGson)
+        startActivity(intent)
     }
 
 

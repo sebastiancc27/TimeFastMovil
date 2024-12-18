@@ -1,5 +1,16 @@
-package uv.tc.timefastmovil.Poko
+package uv.tc.timefastmovil.poko
 
-data class Colaborador(val idColaborador: Int, val nombre : String, val apellidoPaterno: String, val correo : String,
-    val noPersonal : String, val contrasena : String, val curp : String, val idRol: Int, val foto : String?, val noLicencia : String,
-    val nombreColaborador : String)
+data class Colaborador(
+    val idColaborador: Int,
+    var nombre: String,
+    var apellidoPaterno: String,
+    var apellidoMaterno: String,
+    var correo: String,
+    var noPersonal: String,
+    var contrasena: String,
+    var curp: String,
+    var idRol: Int,
+    var foto: String,
+    var noLicencia: String,
+    var nombreColaborador: String
+)

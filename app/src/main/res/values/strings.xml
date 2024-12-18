@@ -29,6 +29,12 @@
     <string name="envio_comentarios_text">Comentario</string>
     <string name="envio_boton_cancelar">Cancelar</string>
     <string name="envio_boton_guardar">Guardar</string>
+    <string name="envio_nombre_text">Nombre</string>
+    <string name="envio_telefono_text">Teléfono</string>
+    <string name="envio_correo_text">Correo</string>
+    <string name="envio_no_guia">123342</string>
+
+
 
     <!--Mi Perfil-->
     <string name="mi_perfil_titulo_pantalla">Time-Fast</string>
@@ -38,7 +44,8 @@
     <string name="mi_perfil_apellido_materno_text">Apellido Materno</string>
     <string name="mi_perfil_correo_text">Correo</string>
     <string name="mi_perfil_contrasena_text">Contraseña</string>
-    <string name="mi_perfil_no_licencia_text">N0. Licencia</string>
+    <string name="mi_perfil_no_licencia_text">No. Licencia</string>
     <string name="mi_perfil_cancelar_button">Cancelar</string>
     <string name="mi_perfil_actualizar_button">Actualizar</string>
+    <string name="mi_perfil_contrasena_et">*********</string>
 </resources>
