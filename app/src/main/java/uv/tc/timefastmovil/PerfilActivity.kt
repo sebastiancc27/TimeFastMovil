@@ -1,7 +1,9 @@
 package uv.tc.timefastmovil
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -32,9 +34,14 @@ class PerfilActivity : AppCompatActivity() {
         binding = ActivityPerfilBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        colaborador = obtenerColaboradorDesdeSharedPreferences()
 
-        val stringJson = intent.getStringExtra("colaborador")!!
-        cargarDatosCliente(stringJson)
+        val gson = Gson()
+        val stringColaborador =gson.toJson(colaborador)
+        println("VEAMOS : "+colaborador.idColaborador+" nombre: "+colaborador.nombre)
+        //val stringJson = intent.getStringExtra("colaborador")!!
+        cargarDatosCliente(stringColaborador)
+
 
         binding.btnGuardarCambiosEnvio.setOnClickListener{
             val gson = Gson()
@@ -57,14 +64,10 @@ class PerfilActivity : AppCompatActivity() {
 
 
             enviarDatosEdicion(colaboradorEdicion)
-
-            if (validarVacio()){
-                enviarDatosEdicion(colaboradorEdicion)
-            }
         }
 
         binding.btnCancelarCambioEnvio.setOnClickListener{
-            cargarDatosCliente(stringJson)
+            //cargarDatosCliente(stringJson)
             Toast.makeText(this@PerfilActivity,"Cambios cancelados",Toast.LENGTH_LONG).show()
             finish()
         }
@@ -77,8 +80,7 @@ class PerfilActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        obtenerFotoColaborador(colaborador.idColaborador)
-
+       obtenerFotoColaborador(colaborador.idColaborador)
         binding.ivCambiarFoto.setOnClickListener{
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
@@ -86,8 +88,52 @@ class PerfilActivity : AppCompatActivity() {
         }
     }
 
+    fun obtenerColaboradorDesdeSharedPreferences(): Colaborador {
+        val sharedPreferences: SharedPreferences = getSharedPreferences("MisEnviosPrefs", Context.MODE_PRIVATE)
+
+        // Obtener el JSON guardado de SharedPreferences
+        val colaboradorJson = sharedPreferences.getString("colaborador", null)
+
+        // Si se encontró el JSON, intentar deserializarlo
+        if (colaboradorJson != null) {
+            return try {
+                // Utilizando Gson para deserializar el JSON en un objeto Colaborador
+                val gson = Gson()
+                gson.fromJson(colaboradorJson, Colaborador::class.java)
+            } catch (e: Exception) {
+                // En caso de que haya un error de deserialización, mostrar un mensaje de error
+                Toast.makeText(this, "Error al cargar los datos del colaborador: ${e.message}", Toast.LENGTH_LONG).show()
+                // Devolver un objeto predeterminado
+                crearColaboradorPredeterminado()
+            }
+        } else {
+            // Si no se encontró el JSON en SharedPreferences
+            Toast.makeText(this, "No se encontró información del colaborador", Toast.LENGTH_LONG).show()
+            return crearColaboradorPredeterminado()
+        }
+    }
+
+    fun crearColaboradorPredeterminado(): Colaborador {
+        // Devuelve un objeto Colaborador con valores predeterminados
+        return Colaborador(
+            idColaborador = 0,
+            nombre = "Desconocido",
+            apellidoPaterno = "Desconocido",
+            apellidoMaterno = "Desconocido",
+            correo = "desconocido@dominio.com",
+            noPersonal = "0000",
+            contrasena = "********",
+            curp = "CURP000000000000",
+            idRol = 1,
+            foto = null,
+            noLicencia = "0000",
+            nombreColaborador = "Desconocido Desconocido"
+        )
+    }
+
+
     fun enviarDatosEdicion(colaborador: Colaborador){
-        println("URL DEL SERVICIO :${Constantes().urlServicio}colaborador/{editar-colaborador}")
+        println("URL DEL SERVICIO :${Constantes().urlServicio}colaborador/editar-colaborador")
         val gson = Gson()
         val parametros = gson.toJson(colaborador)
         Ion.with(this@PerfilActivity)
@@ -202,7 +248,6 @@ class PerfilActivity : AppCompatActivity() {
     private fun cargarDatosCliente(stringJson : String){
         val gson = Gson()
         colaborador = gson.fromJson(stringJson, Colaborador::class.java)
-
         binding.tvNoPersonal.setText(colaborador.noPersonal)
         binding.etNombre.setText(colaborador.nombre)
         binding.etApellidoPaterno.setText(colaborador.apellidoPaterno)

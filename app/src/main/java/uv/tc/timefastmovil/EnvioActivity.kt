@@ -19,10 +19,10 @@ class EnvioActivity : AppCompatActivity() {
     private lateinit var binding:ActivityEnvioBinding
     private lateinit var noGuia : String
     private lateinit var colaboradorJson : String
-    private lateinit var colaborador : Colaborador
+    private lateinit var colaborador: Colaborador
     private lateinit var envio: Envio
     private lateinit var cliente: Cliente
-    val listaEstatus = arrayOf("Pendiente","En Tránsito","Entregado","Detenido","Cancelado")
+    val listaEstatus = arrayOf("Pendiente","En Transito","Entregado","Detenido","Cancelado")
 
     val gson = Gson()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +66,10 @@ class EnvioActivity : AppCompatActivity() {
                 binding.myTextArea.setError("Comentario Obligatorio")
             }else{
                 envio.estatus = valorSpinner
+                envio.motivo = binding.myTextArea.text.toString()
+                println("ENVIO: "+envio)
                 actualizarEnvio(envio)
+                finish()
             }
         }
 
@@ -80,9 +83,11 @@ class EnvioActivity : AppCompatActivity() {
             .asString()
             .setCallback { e, result ->
                 if (e == null){
-                    println("ENVIO ACTUALIZADO CORRECTAMENTE"+ result)
+                    println("ENVIO STATUS"+ result)
+                    Toast.makeText(this@EnvioActivity, "Envio actualizado",Toast.LENGTH_LONG).show()
                 }else{
                     println("ERROR AL ACTUALIZAR EL ENVIO: "+ e.message)
+                    Toast.makeText(this@EnvioActivity, "Error al actualizar el envio",Toast.LENGTH_LONG).show()
                 }
             }
     }

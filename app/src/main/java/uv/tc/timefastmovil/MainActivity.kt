@@ -7,7 +7,6 @@ import uv.tc.timefastmovil.poko.Colaborador
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var colaborador: Colaborador
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

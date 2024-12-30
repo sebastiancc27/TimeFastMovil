@@ -79,6 +79,7 @@
         android:padding="8dp"
     >
     <EditText
+        android:id="@+id/et_num_guia"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="@string/mis_envios_num_guia"

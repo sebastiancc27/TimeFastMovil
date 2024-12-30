@@ -10,7 +10,8 @@ data class Colaborador(
     var contrasena: String,
     var curp: String,
     var idRol: Int,
-    var foto: String,
+    var foto: String?,
     var noLicencia: String,
     var nombreColaborador: String
+
 )
