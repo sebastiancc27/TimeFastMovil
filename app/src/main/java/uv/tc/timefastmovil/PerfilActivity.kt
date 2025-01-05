@@ -289,7 +289,7 @@ class PerfilActivity : AppCompatActivity() {
             binding.etNoLicencia.setError("Numero de licencia obligatoria")
             valido = true
         }
-        return valido
+        return valido   
     }
 
     fun cerrarSesion(){

@@ -13,5 +13,4 @@ data class Colaborador(
     var foto: String?,
     var noLicencia: String,
     var nombreColaborador: String
-
 )

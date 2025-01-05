@@ -58,6 +58,12 @@ class EnvioActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.tvPaquetes.setOnClickListener{
+            val intent = Intent(this@EnvioActivity, PaquetesActivity::class.java)
+            println("ID DEL ENVIO AL DARLE CLIC: "+envio.idEnvio)
+            intent.putExtra("envio", envio.idEnvio.toString());
+            startActivity(intent)
+        }
         binding.btnGuardarCambiosEnvio.setOnClickListener{
             val valorSpinner = spinner.selectedItem.toString()
             println("VALOR SPINNER: "+valorSpinner)
@@ -112,6 +118,7 @@ class EnvioActivity : AppCompatActivity() {
                     envio=gson.fromJson(result.toString(),Envio::class.java)
                     obtenerCliente(envio.idCliente)
                     cargarDatosEnvio(envio)
+                    println("DATOS DEL ENVIO: "+envio)
                 }else{
                     Toast.makeText(this,"Error en la peticion: "+error.message,
                         Toast.LENGTH_LONG).show()
@@ -151,7 +158,6 @@ class EnvioActivity : AppCompatActivity() {
 
     fun cargarDatosEnvio(envio: Envio){
         binding.tvNoGuia.text = envio.noGuia.toString()
-        binding.tvPaquetes.text = envio.cantidadPaquetes.toString()
         binding.tvDestino.text = envio.destino
         binding.tvOrigen.text = "${envio.ciudad}, ${envio.estado}"
 

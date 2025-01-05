@@ -42,6 +42,7 @@ class MisEnviosActivity : AppCompatActivity() , ListenerRecycleEnvios{
         recycleview = binding.recycleEnvios
         recycleview.layoutManager = LinearLayoutManager(this@MisEnviosActivity)
         arrayEnvios = arrayListOf<Envio>()
+
         adapter = RecycleEnviosAdapter(arrayEnvios, this@MisEnviosActivity)
         recycleview.adapter = adapter
 
@@ -125,9 +126,14 @@ class MisEnviosActivity : AppCompatActivity() , ListenerRecycleEnvios{
                         println("resultado ${result}")
                         val gson = Gson()
                         val envios = gson.fromJson(result, Array<Envio>::class.java).toList()
-                        arrayEnvios.clear()
-                        arrayEnvios.addAll(envios)
-                        adapter.notifyDataSetChanged()
+                        if(envios.size > 0 ){
+                            arrayEnvios.clear()
+                            arrayEnvios.addAll(envios)
+                            adapter.notifyDataSetChanged()
+                        }else{
+                        Toast.makeText(this, "No se encontraron envios",Toast.LENGTH_LONG).show();
+                        }
+
                     } catch (ex: Exception) {
                         Toast.makeText(this, "Error al procesar los datos: ${ex.message}", Toast.LENGTH_LONG).show()
                     }
@@ -148,9 +154,13 @@ class MisEnviosActivity : AppCompatActivity() , ListenerRecycleEnvios{
                         println("resultado ${result}")
                         val gson = Gson()
                         val envio = gson.fromJson(result,Envio::class.java)
-                        arrayEnvios.clear()
-                        arrayEnvios.add(envio)
-                        adapter.notifyDataSetChanged()
+                        if(envio!=null){
+                            arrayEnvios.clear()
+                            arrayEnvios.add(envio)
+                            adapter.notifyDataSetChanged()
+                        }else{
+                            Toast.makeText(this, "No se encontraron envios con el N0. de Guia",Toast.LENGTH_LONG).show();
+                        }
                     } catch (ex: Exception) {
                         Toast.makeText(this, "Error al procesar los datos: ${ex.message}", Toast.LENGTH_LONG).show()
                     }
