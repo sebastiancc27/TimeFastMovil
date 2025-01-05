@@ -61,6 +61,7 @@
             android:textStyle="normal"
             />
         <ImageView
+            android:id="@+id/recargar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:srcCompat="@drawable/carrito_timefast"

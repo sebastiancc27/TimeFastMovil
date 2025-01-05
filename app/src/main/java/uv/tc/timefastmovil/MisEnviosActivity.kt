@@ -15,7 +15,6 @@ import uv.tc.timefastmovil.Interfaces.ListenerRecycleEnvios
 import uv.tc.timefastmovil.Poko.Envio
 import uv.tc.timefastmovil.databinding.ActivityMisEnviosBinding
 import uv.tc.timefastmovil.poko.Colaborador
-import uv.tc.timefastmovil.poko.LoginColaborador
 import uv.tc.timefastmovil.util.Constantes
 
 class MisEnviosActivity : AppCompatActivity() , ListenerRecycleEnvios{
@@ -50,8 +49,12 @@ class MisEnviosActivity : AppCompatActivity() , ListenerRecycleEnvios{
         obtenerEnvios(colaborador.noPersonal.toString().toInt())
 
         binding.iconBuscarNumGuia.setOnClickListener{
-        var numeroGuia = binding.etNumGuia.text.toString().toInt()
-        obtenerEnviosNoGuia(numeroGuia)
+            if(binding.etNumGuia.text.isNotEmpty()) {
+                var numeroGuia = binding.etNumGuia.text.toString().toInt()
+                obtenerEnviosNoGuia(numeroGuia)
+            }else{
+                Toast.makeText(this@MisEnviosActivity,"Ingrese un número de guía para buscar", Toast.LENGTH_LONG).show()
+            }
         }
 
 
@@ -59,6 +62,11 @@ class MisEnviosActivity : AppCompatActivity() , ListenerRecycleEnvios{
             println("ID DEL COLABORADOR: "+colaborador.idColaborador)
             println("COLABORADOR: "+colaborador)
             obtenerColaboradorRecargar(colaborador.idColaborador)
+        }
+
+        binding.recargar.setOnClickListener {
+            obtenerEnvios(colaborador.noPersonal.toString().toInt())
+            binding.etNumGuia.text.clear()
         }
 
     }
@@ -70,7 +78,7 @@ class MisEnviosActivity : AppCompatActivity() , ListenerRecycleEnvios{
 
     fun obtenerColaboradorRecargar(idColaborador : Int){
         Ion.with(this@MisEnviosActivity)
-            .load("GET", Constantes().urlServicio+"colaborador/Pa-foto/${idColaborador}")
+            .load("GET", Constantes().urlServicio+"colaborador/obtener-foto/${idColaborador}")
             .asString()
             .setCallback{e, result->
                 if(e==null){
@@ -84,7 +92,7 @@ class MisEnviosActivity : AppCompatActivity() , ListenerRecycleEnvios{
 
     fun serializarInformacion(json:String){
         irPantallaPerfil(json)
-        }
+    }
 
     fun irPantallaPerfil(colaborador: String){
         val intent = Intent(this@MisEnviosActivity,PerfilActivity::class.java)

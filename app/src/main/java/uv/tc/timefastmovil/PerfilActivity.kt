@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.google.gson.Gson
 import com.koushikdutta.ion.Ion
 import uv.tc.timefastmovil.Poko.Mensaje
@@ -74,6 +75,9 @@ class PerfilActivity : AppCompatActivity() {
 
         binding.logo.setOnClickListener{
             finish()
+        }
+        binding.logout.setOnClickListener {
+            cerrarSesion()
         }
     }
 
@@ -179,6 +183,7 @@ class PerfilActivity : AppCompatActivity() {
                     Toast.makeText(this@PerfilActivity, "Error: " + e.message, Toast.LENGTH_LONG).show()
                 }
             }
+        println("URL OBTENER FOTO: ${Constantes().urlServicio}colaborador/obtener-foto/${idColaborador}")
     }
 
     private val seleccionarFotoPerfil = this.registerForActivityResult(
@@ -285,5 +290,12 @@ class PerfilActivity : AppCompatActivity() {
             valido = true
         }
         return valido
+    }
+
+    fun cerrarSesion(){
+        val intent = Intent(this@PerfilActivity, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        ActivityCompat.finishAffinity(this@PerfilActivity)
     }
 }
