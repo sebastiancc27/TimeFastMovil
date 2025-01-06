@@ -11,8 +11,9 @@ import com.koushikdutta.ion.Ion
 import uv.tc.timefastmovil.databinding.ActivityEnvioBinding
 import com.google.gson.reflect.TypeToken
 import uv.tc.timefastmovil.Poko.Cliente
+import uv.tc.timefastmovil.Poko.Colaborador
 import uv.tc.timefastmovil.Poko.Envio
-import uv.tc.timefastmovil.poko.Colaborador
+
 import uv.tc.timefastmovil.util.Constantes
 
 class EnvioActivity : AppCompatActivity() {
@@ -61,7 +62,7 @@ class EnvioActivity : AppCompatActivity() {
         binding.tvPaquetes.setOnClickListener{
             val intent = Intent(this@EnvioActivity, PaquetesActivity::class.java)
             println("ID DEL ENVIO AL DARLE CLIC: "+envio.idEnvio)
-            intent.putExtra("envio", envio.idEnvio.toString());
+            intent.putExtra("envio", envio.noGuia.toString());
             startActivity(intent)
         }
         binding.btnGuardarCambiosEnvio.setOnClickListener{
@@ -73,6 +74,7 @@ class EnvioActivity : AppCompatActivity() {
             }else{
                 envio.estatus = valorSpinner
                 envio.motivo = binding.myTextArea.text.toString()
+                envio.idColaborador = colaborador.idColaborador
                 println("ENVIO: "+envio)
                 actualizarEnvio(envio)
                 finish()
@@ -83,6 +85,7 @@ class EnvioActivity : AppCompatActivity() {
     }
 
     fun actualizarEnvio(envio: Envio){
+        println("ENVIO URL ESTATUS: "+"${Constantes().urlServicio}envio/editar-envio")
         Ion.with(this@EnvioActivity)
             .load("PUT","${Constantes().urlServicio}envio/editar-envio")
             .setHeader("Content-Type", "application/json")

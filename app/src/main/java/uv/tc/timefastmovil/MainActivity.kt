@@ -3,7 +3,6 @@ package uv.tc.timefastmovil
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import uv.tc.timefastmovil.databinding.ActivityMainBinding
-import uv.tc.timefastmovil.poko.Colaborador
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

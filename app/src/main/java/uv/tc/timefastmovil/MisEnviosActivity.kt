@@ -12,9 +12,9 @@ import com.google.gson.Gson
 import com.koushikdutta.ion.Ion
 import uv.tc.timefastmovil.Adaptadores.RecycleEnviosAdapter
 import uv.tc.timefastmovil.Interfaces.ListenerRecycleEnvios
+import uv.tc.timefastmovil.Poko.Colaborador
 import uv.tc.timefastmovil.Poko.Envio
 import uv.tc.timefastmovil.databinding.ActivityMisEnviosBinding
-import uv.tc.timefastmovil.poko.Colaborador
 import uv.tc.timefastmovil.util.Constantes
 
 class MisEnviosActivity : AppCompatActivity() , ListenerRecycleEnvios{

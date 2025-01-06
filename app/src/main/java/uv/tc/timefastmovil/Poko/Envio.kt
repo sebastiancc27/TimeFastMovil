@@ -17,6 +17,7 @@ data class Envio(
     var idConductor: Int,
     var nombreCliente: String,
     var cantidadPaquetes: Int,
-    var conductorAsignado: String
+    var conductorAsignado: String,
+    var idColaborador : Int
 
 )

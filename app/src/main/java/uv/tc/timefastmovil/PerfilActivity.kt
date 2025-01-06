@@ -16,9 +16,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.gson.Gson
 import com.koushikdutta.ion.Ion
+import uv.tc.timefastmovil.Poko.Colaborador
 import uv.tc.timefastmovil.Poko.Mensaje
 import uv.tc.timefastmovil.databinding.ActivityPerfilBinding
-import uv.tc.timefastmovil.poko.Colaborador
 import uv.tc.timefastmovil.util.Constantes
 import java.io.ByteArrayOutputStream
 import java.io.InputStream

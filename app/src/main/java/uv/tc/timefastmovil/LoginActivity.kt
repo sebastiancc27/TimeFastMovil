@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
         //Configuración de la librería Ion. Solo se debe hacer la primera vez
         Ion.getDefault(this@LoginActivity).conscryptMiddleware.enable(false)
         Ion.with(this@LoginActivity)
-            .load("POST","${Constantes().urlServicio}login/login-colaborador")
+            .load("POST","${Constantes().urlServicio}login/login-conductor")
             .setHeader("Content-Type","application/x-www-form-urlencoded")
             .setBodyParameter("noPersonal", noPersonal)
             .setBodyParameter("contrasena", contrasena)

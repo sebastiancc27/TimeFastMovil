@@ -1,4 +1,4 @@
-package uv.tc.timefastmovil.poko
+package uv.tc.timefastmovil.Poko
 
 data class Colaborador(
     val idColaborador: Int,
