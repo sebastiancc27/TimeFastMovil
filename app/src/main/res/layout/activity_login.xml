@@ -92,7 +92,7 @@
             android:id="@+id/et_contrasena"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:hint="@string/login_contrasena_hint"
             android:background="@drawable/shape_edit_text"
             android:padding="4dp"

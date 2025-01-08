@@ -58,7 +58,7 @@ class PerfilActivity : AppCompatActivity() {
             val colaboradorEdicion = Colaborador(idColaborador,nombreColaborador,apellidoPaternoColaborador,
                 apellidoMaternoColaborador,correoColaborador,noPersonalColaborador,contrasenaColaborador,
                 colaborador.curp.toString(), colaborador.idRol.toString().toInt(),"",
-                colaborador.noLicencia.toString(),"")
+                noLicenciaColaborador,"")
 
             val colaboradorJson = gson.toJson(colaboradorEdicion)
             println("JSON DEL OBJETO: ${colaboradorJson}")
